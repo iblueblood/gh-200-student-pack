@@ -1,0 +1,26 @@
+name: PR Gate
+
+on:
+  pull_request:
+    branches: [pr-gate]
+  workflow_dispatch:
+
+jobs:
+  check:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{matrix.os}}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@<SHA>
+
+      - name: Set up Python
+        uses: actions/setup-python@<SHA>
+        with:
+          python-version: "3.12"
+
+      - name: Run the check.py
+        run: python labs/capstone/check.py
