@@ -2,7 +2,7 @@ name: PR Gate
 
 on:
   pull_request:
-    branches: [pr-gate]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -15,10 +15,10 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@<SHA>
+        uses: actions/checkout@v7
 
       - name: Set up Python
-        uses: actions/setup-python@<SHA>
+        uses: actions/setup-python@v7
         with:
           python-version: "3.12"
 
